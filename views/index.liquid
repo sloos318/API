@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+</head>
+<body>
+    <main>
+        <h1>Welcome to My Streaming Service</h1>
+        {% for movie in movies %}
+        <div class="movie">
+            <h2>{{ movie.title }}</h2>
+            <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+            <p>{{ movie.description }}</p>
+        </div>
+        {% endfor %}
+    </main>
+</body>
+</html>
