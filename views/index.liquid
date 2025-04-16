@@ -4,17 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix Clone</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+
+    {% include "partials/header.liquid" %}
+
     <main>
-        <h1>Welcome to My Streaming Service</h1>
-        {% for movie in movies %}
-        <div class="movie">
-            <h2>{{ movie.title }}</h2>
-            <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
-            <p>{{ movie.description }}</p>
-        </div>
-        {% endfor %}
+        <section>
+            <h2>All Movies</h2>
+            <ul id="movies-list" class="movies">
+                {% for movie in movies %}
+                    <li class="movie {{ movie.genre }}"> <!-- Add the genre class to the <li> -->
+                        <a href="/movie/{{ movie.id }} " class="movie-link">
+                            <img 
+                                src="{{ movie.image }}" 
+                                alt="Movie Poster" 
+                                style="--sibling-index: {{ movie.genreIndex }};"
+                            >
+                        </a>
+                        <div></div>
+                    </li>
+                {% endfor %}
+            </ul>
+              <!-- Sentinel goes here, JS adds it if you prefer -->              
+        </section>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@latest/bundled/lenis.min.js"></script>
+    <script src="/index.js" type="module"></script>
 </body>
 </html>
