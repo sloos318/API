@@ -1,1 +1,4 @@
-hello
+# readme voor API
+Dit is een schoolproject waar ik mee bezig ga zijn tijdens de minor design and developement in 2025. Als je dit project wilt instaleren zal je npm i moeten gebruiken om alle packages te downloaden en kan je de website starten met npm run dev. Om alles werkend te maken heb je wel een api key nodig die je in zal moeten invullen in een .env file. Deze zul je aan moeten vragen bij tmdb (https://www.themoviedb.org/). 
+
+Het doel voor mij bij dit vak is om gebruik te maken van animatie libraries en kijken hoe die werken en wat ik er mee zou kunnen. Hierom zal ik bijde lenis en gsap gaan gebruiken. Ik zal om het idee simpel te houden een overview van films te maken met een beetje informatie er over en een trailer op een detail pagina. Voor de rest wil ik focussen op de animaties.

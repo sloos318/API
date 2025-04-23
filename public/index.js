@@ -113,36 +113,45 @@ document.addEventListener('click', (e) => {
   // Calculate the scrollbar width to center the animation properly
   const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-  // Calculate the target size and position for the animation
-  const targetWidth = window.innerWidth * 0.3; // Target width is 30% of the viewport width
-  const targetHeight = targetWidth / aspectRatio; // Maintain the aspect ratio
-  const targetLeft = (window.innerWidth - targetWidth - scrollbarWidth) / 2; // Center horizontally
-  const targetTop = window.innerHeight * 0.15; // Position 15% from the top
+  // Calculate the target width with a cap of 400px
+// Calculate the target width: 30% of viewport, but no more than 400px
+let targetWidth = Math.min(window.innerWidth * 0.3, 400); // Max at 400px
 
-  // Animate the overlay to cover the entire screen
-  gsap.to(overlayDiv, {
-    top: 0,
-    left: 0,
-    width: '100vw', // Full viewport width
-    height: '100vh', // Full viewport height
-    ease: 'power3.inOut', // Smooth easing
-    duration: 0.8, // Animation duration
-  });
 
-  // Animate the cloned image to the target position and size
-  gsap.to(cloneImg, {
-    top: targetTop, // Move to the target top position
-    left: targetLeft, // Move to the target left position
-    width: targetWidth, // Resize to the target width
-    height: targetHeight, // Resize to the target height
-    ease: 'power3.inOut', // Smooth easing
-    duration: 0.8, // Animation duration
-    onComplete: () => {
-      setTimeout(() => {
-        window.location.href = url; // Redirect to the link's URL after the animation
-      }, 200); // Small delay before redirecting
-    },
-  });
+// Maintain the aspect ratio
+const targetHeight = targetWidth / aspectRatio;
+
+// Center horizontally considering scrollbar
+const targetLeft = (window.innerWidth - targetWidth - scrollbarWidth) / 2;
+
+// Position 15% from the top
+const targetTop = window.innerHeight * 0.15;
+
+// Animate the overlay to cover the entire screen
+gsap.to(overlayDiv, {
+  top: 0,
+  left: 0,
+  width: '100vw',
+  height: '100vh',
+  ease: 'power3.inOut',
+  duration: 0.8,
 });
+
+// Animate the cloned image to the target position and size
+gsap.to(cloneImg, {
+  top: targetTop,
+  left: targetLeft,
+  width: targetWidth,
+  height: targetHeight,
+  ease: 'power3.inOut',
+  duration: 0.8,
+  onComplete: () => {
+    setTimeout(() => {
+      window.location.href = url;
+    }, 200);
+  },
+});
+}
+)
 
 // sources: https://gsap.com/docs/v3/Eases/
