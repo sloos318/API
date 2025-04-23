@@ -115,7 +115,7 @@
 
 .movies {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--box-size), 1fr));
+  grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   gap: 1.2rem;
   transition: all 0.3s ease; /* Smooth transitions */

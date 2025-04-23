@@ -40,6 +40,18 @@ section.movie-details {
         width: 80vw;
         grid-row: 5;
         z-index: 2;
+
+        gap: 1rem;
+
+        h1 {
+            font-size: var(--step-3);
+        }
+
+        p {
+            font-size: var(--step-0);
+            line-height: 1.5;
+            text-align: center;
+        }
     }
 
     div.background {
@@ -65,22 +77,31 @@ section.movie-details {
             
         }
 
-        img:nth-child(2) {
-            position: absolute;
-            top: 40vw;
+        .ghost {
+            position: relative;
+
             left: 15vw;
             z-index: 1;
 
             width: 5vw;
             height: auto;
 
-            opacity: 0.2;
+            opacity: 0;
 
+            transform: scale(1);
             transition: transform 0.3s ease;
+            z-index: 3;
+            animation: hover 1.5s ease infinite;
+            animation-direction: alternate;
+
         }
+
+
     }
 
 }
+
+
 
 
 .movie-content, .back-button, .background {
@@ -98,3 +119,13 @@ section.movie-details {
     color: white;
     text-decoration: none;
   }
+
+
+  @keyframes hover {
+    from {
+      padding-bottom: 0px;
+    }
+    to {
+        padding-bottom: 20px;
+    }
+   }

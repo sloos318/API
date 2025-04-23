@@ -15,25 +15,44 @@ window.addEventListener('load', () => {
   if (ghost) {
     // Register the MotionPathPlugin
     gsap.registerPlugin(MotionPathPlugin);
-
-    // Create the ghost animation using a motion path
+  
+    // Set initial state
+    gsap.set(ghost, { opacity: 0, scale: 1 });
+  
+    // First animate opacity for 1 second
     gsap.to(ghost, {
-      duration: 6,
+      delay: 1,
+      duration: 1.5,
+      opacity: 1
+    });
+  
+    // Then start the motion path after 1 second
+    gsap.to(ghost, {
+      delay: 1, // Start after the fade-in
+      duration: 5,
       ease: 'power1.inOut',
       motionPath: {
         path: [
-          { x: 0, y: 0 },
-          { x: window.innerWidth / 2, y: -200 },
-          { x: window.innerWidth, y: window.innerHeight / 2 },
-          { x: 0, y: window.innerHeight },
-          { x: 0, y: 0 } // Return to original
+          { x: 0, y: 0 }, // Start
+          { x: window.innerWidth * 0.9, y: 0 }, // Go right
+          { x: window.innerWidth * 0.3, y: window.innerHeight * 0.7 }, // Curve down and left
+          { x: window.innerWidth * 0, y: window.innerHeight * 0.5 }, // Go left
+          { x: window.innerWidth * 0.3, y: window.innerHeight * 0.3 }, // Go right and up
+          { x: window.innerWidth * 0.6, y: window.innerHeight * 0.1 }, // Go right and up
+          { x: window.innerWidth * 0.6, y: window.innerHeight * 0 } // Go straight up
         ],
         autoRotate: true,
         curviness: 1.5
+      },
+      scale: 2.2,
+      onUpdate: function () {
+        const rotation = gsap.getProperty(ghost, "rotation");
+        gsap.set(ghost, { rotation: rotation + 90 });
       },
       onComplete: () => {
         console.log('Motion path animation complete');
       }
     });
   }
+  
 });

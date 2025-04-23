@@ -43,6 +43,8 @@ const options = {
 // Define routes
 app.get("/", async (req, res) => {
   let movies = [];
+  const uniqueMovieIds = new Set(); // Track unique movie IDs
+  const maxMovies = 50; // Maximum number of movies to load
 
   try {
     // Fetch genres
@@ -58,27 +60,35 @@ app.get("/", async (req, res) => {
       return map;
     }, {});
 
-    // Fetch 6 movies for each genre
+    // Fetch movies for each genre
     for (const genre of genreJson.genres) {
+      if (movies.length >= maxMovies) break; // Stop if the maximum number of movies is reached
+
       const genreMoviesUrl = `${url}?with_genres=${genre.id}&page=1`;
       const movieRes = await fetch(genreMoviesUrl, options);
       const movieJson = await movieRes.json();
 
       const genreMovies = movieJson.results
-        .filter(movie => movie.poster_path) // Only include movies with a valid poster_path
-        .slice(0, 3) // Limit to 6 movies
-        .map(movie => ({
-          id: movie.id, // Include the movie ID
-          image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-          genre: genreMap[movie.genre_ids[0]]?.name || "unknown", // Use only the first genre or "unknown" if no genre exists
-          genreIndex: genreMap[movie.genre_ids[0]]?.index || 0 // Use the corresponding number or 0 if no genre exists
-        }));
+        .filter(movie => movie.poster_path && !uniqueMovieIds.has(movie.id)) // Only include movies with a valid poster_path and not already added
+        .slice(0, 2) // Limit to 2 movies per genre
+        .map(movie => {
+          uniqueMovieIds.add(movie.id); // Add the movie ID to the set
+          return {
+            id: movie.id, // Include the movie ID
+            image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            genre: genreMap[movie.genre_ids[0]]?.name || "unknown", // Use only the first genre or "unknown" if no genre exists
+            genreIndex: genreMap[movie.genre_ids[0]]?.index || 0 // Use the corresponding number or 0 if no genre exists
+          };
+        });
 
       movies = movies.concat(genreMovies); // Add movies to the array
     }
 
     // Shuffle the movies array
     movies = movies.sort(() => Math.random() - 0.5);
+
+    // Limit the total number of movies to the maximum allowed
+    movies = movies.slice(0, maxMovies);
 
     res.render("index", { movies });
   } catch (err) {
