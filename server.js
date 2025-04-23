@@ -13,7 +13,6 @@ const engine = new Liquid();
 
 
 
-
 // **************************** //
 // ***** engine of choice ***** //
 // **************************** //
@@ -67,7 +66,7 @@ app.get("/", async (req, res) => {
 
       const genreMovies = movieJson.results
         .filter(movie => movie.poster_path) // Only include movies with a valid poster_path
-        .slice(0, 6) // Limit to 6 movies
+        .slice(0, 3) // Limit to 6 movies
         .map(movie => ({
           id: movie.id, // Include the movie ID
           image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
@@ -109,11 +108,15 @@ app.get("/movie/:id", async (req, res) => {
       video.site === "YouTube" && video.type === "Trailer"
     );
 
+    // Check if the first genre is "horror"
+    const isHorror = movie.genres.some(genre => genre.name.toLowerCase() === "horror");
+
     const movieData = {
       title: movie.title,
       description: movie.overview,
       image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-      trailerUrl: trailer ? `https://www.youtube.com/embed/${trailer.key}` : null
+      trailerUrl: trailer ? `https://www.youtube.com/embed/${trailer.key}` : null,
+      isHorror // Pass the flag to the template
     };
 
     res.render("movie", { movie: movieData });
