@@ -39,12 +39,16 @@ const options = {
 };
 
 
+// ********************** //
+// ***** the routes ***** //
+// ********************** //
 
-// Define routes
+// Home route
+
 app.get("/", async (req, res) => {
   let movies = [];
   const uniqueMovieIds = new Set(); // Track unique movie IDs
-  const maxMovies = 50; // Maximum number of movies to load
+  const maxMovies = 51; // Maximum number of movies to load
 
   try {
     // Fetch genres
@@ -97,6 +101,7 @@ app.get("/", async (req, res) => {
   }
 });
 
+// Movie details route
 
 app.get("/movie/:id", async (req, res) => {
   const movieId = req.params.id;
@@ -135,48 +140,6 @@ app.get("/movie/:id", async (req, res) => {
     res.status(500).send("Something went wrong while fetching the movie details.");
   }
 });
-
-
-// API route for loading more movies
-app.get("/api/movies", async (req, res) => {
-  const page = parseInt(req.query.page) || 1;
-
-  try {
-    // Fetch genres
-    const genreRes = await fetch(genres, options);
-    const genreJson = await genreRes.json();
-
-    // Map genres to numbers
-    const genreMap = genreJson.genres.reduce((map, genre, index) => {
-      map[genre.id] = {
-        name: genre.name.toLowerCase().replace(/\s+/g, "-"), // Convert genre names to lowercase and replace spaces with dashes
-        index: index + 1 // Assign a number starting from 1
-      };
-      return map;
-    }, {});
-
-    // Fetch movies for the requested page
-    const movieRes = await fetch(`${url}?page=${page}`, options);
-    const movieJson = await movieRes.json();
-
-    const movies = movieJson.results
-      .filter(movie => movie.poster_path) // Only include movies with a valid poster_path
-      .map(movie => ({
-        id: movie.id,
-        image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-        genre: genreMap[movie.genre_ids[0]]?.name || "unknown", // Use only the first genre or "unknown" if no genre exists
-        genreIndex: genreMap[movie.genre_ids[0]]?.index || 0 // Use the corresponding number or 0 if no genre exists
-      }));
-
-    res.json(movies);
-  } catch (err) {
-    console.error("API Error:", err);
-    res.status(500).json({ error: "Failed to fetch movies" });
-  }
-});
-
-
-
 
 
 // Start the server
