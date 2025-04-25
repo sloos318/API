@@ -15,16 +15,16 @@ Sinds ik in de eerste week ziek was moest ik snel een plan maken. Hierom koos ik
 
 Dit deed ik door de links op te halen en een constant genaamd options te schrijven waarin ik een get function in zet en mijn api key zodat ik dat niet aleemaal op te schrijven als ik iets uit de api haal.
 
-<img href='./reasdmeimages/customProperties.png'>
+<img href='/reasdmeimages/customProperties.png'>
 
 Hiermee haalde ik een aantal films op en renderde ik die op de home page. 
 
-<img href='./reasdmeimages/image1.png'>
-<img href='./reasdmeimages/image2.png'>
+<img href='/reasdmeimages/image1.png'>
+<img href='/reasdmeimages/image2.png'>
 
 Hierna ging ik voor het eerste met liquid aan de gang, het duurde even voordat ik wist hoe de syntax in elkaar zat maar uiteindelijk bleek dat vrij simpel te zijn. 
 
-<img href='./reasdmeimages/image3.png'>
+<img href='/reasdmeimages/image3.png'>
 
 Nou tot nu ging het vrij goed maar ik was nog niet begonnen met een detail pagina maken. Dit bleek vrij moeilijk te zijn voor mij en het duurde even om uit te vogellen hoe ik de ID mee moest geven en die moest gebruiken om een nieuwe route aan te maken met dat id. maar uiteindelijk moest ik gewoon niet zo moeilijk nadenken en hetzelfde doen als ik met het plaatje, en de naam had gedaan en gewoon het er in sturen en achter de link plakken. Hierna was het een kwestie van de route aanmaken en wat dingen inladen door elke keer via de id alles op zoeken. Nu had ik aan het eind van week twee een index en detail pagina met hele simpele styling die gebaseerd was op netflix.
 
@@ -39,7 +39,7 @@ In week 3 ben ik eerst aan de slag gegaan met het maken van een infinite scroll 
 
 Deze code ziet er zo uit:
 
-<script>
+<code>
   // ✅ Init Lenis with true infinite scroll
   const lenis = new window.Lenis({
     infinite: true,
@@ -48,13 +48,13 @@ Deze code ziet er zo uit:
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
   });
-</script>
+</code>
 
 
 ### animatie van de scroll
 Nu hadden we een infinite scroll maar ik wou het een stuk interesanter maken dan een aantal plaatjes waar je door heen kan scrollen. Eerst wou ik elke andere rij wat sneller laten bewegen dan de andere. Dit deed ik gewoon met css natuurlijk en kwam er makkelijk uit met dit stukje code:
 
-<style>
+<code>
     li:nth-child(odd) {
       --scroll-distance: var(--scroll-fast);
       animation-name: scrollByVar;
@@ -104,7 +104,7 @@ Deze code zorgt ervoor dat de even nummers langzaam naar beneden gaan en de odd 
             box-shadow: 0px 0px 20px oklch(70% 70% var(--hue));
           }
       }
-</style>
+</code>
 
 De combinatie van de 2 scroll animaties zorgt voor een leuke en interesante animatie die de home pagina heel wat op fleurt.
 
@@ -114,17 +114,17 @@ De combinatie van de 2 scroll animaties zorgt voor een leuke en interesante anim
 Nu vond ik dat de home pagina een heel stuk beter was geworden met de annimaties erbij maar vond ik dat de cards nog wel wat op konden fleuren. Ik verwijderde de namen van de films en zorgde dat alleen de plaatjes nog over gaven. Hierna haalde ik de genres op uit de database en stuurde ik die 2 keer door naar de main pagina. een keer als naam en een keer als een nummer. 
 
 Dit ging met deze code: 
-<img href='./reasdmeimages/image4.png'>
+<img href='/reasdmeimages/image4.png'>
 
 Dit deed ik om het genre in de html op 2 manieren te gebruiken. Als een class:
-<img href='./reasdmeimages/image5.png'>
+<img href='/reasdmeimages/image5.png'>
 en een keer voor een sibling-index
-<img href='./reasdmeimages/image6.png'>
+<img href='/reasdmeimages/image6.png'>
 
 Dit gebruikte ik om genre specifieke kleuren en iconen toe te voegen. Ik had namelijk in illistrator deze iconen gemaakt en die ging ik gebruiken in de before en after om een hover animatie te maken  voor de cards. De index nummers zou ik gebruiken om een achtergronkleur per genre te maken door die in te vullen bij de oklch. Zo is het uiteindelijk geworden:
-<img href='./reasdmeimages/image7.png'>
-<img href='./reasdmeimages/image8.png'>
-<img href='./reasdmeimages/image9.png'>
+<img href='/reasdmeimages/image7.png'>
+<img href='/reasdmeimages/image8.png'>
+<img href='/reasdmeimages/image9.png'>
 
 
 
@@ -133,7 +133,7 @@ Nu ik blij was met mijn main pagina wou ik een leuke transitie animatie maken va
 
 Dit is hoe de code er daarvoor uit ziet: 
 
-<script>
+<code>
 // ================================================
 // GSAP Movie Click Animation
 // ================================================
@@ -285,7 +285,7 @@ document.addEventListener('click', (e) => {
   });
 });
 
-</script>
+</code>
 
 Nu had ik alweer een stuk meer dan in week 2 maar ik was nog niet tevreden met hoe de detail pagina's in elkaar zaten. Dit zou ik in week 4 afmaken.
 
@@ -298,7 +298,7 @@ In week 4 begon ik met het verbeteren van mijn detail pagina. Hiervoor begon ik 
 
 Nu had ik een achtergrond maar ik wou nog een leuke animatie maken met het spookje dat ik voor horror had gemaakt. Dit zou ik nogmaals met gsap gaan doen. Het idee was om het spookje te laten verschijnen uit het graf in het plaatje en dan een stukje rond vliegen om als laatste naast de poster terecht te komen. Dit idee voerde ik uit met de motion paths uit gsap. Hier kon ik coordienaten geven die het spookje zou volgen en met een bepaalde curve daar naar toe zou vliegen. Dit is hoe de code er uit ziet:
 
-<script>
+<code>
 gsap.to(ghost, {
       delay: 1, // Start after the fade-in
       duration: 5,
@@ -316,6 +316,6 @@ gsap.to(ghost, {
         autoRotate: true,
         curviness: 1.5
       }})
-</script>
+</code>
 
 Nu was alles af wat ik af kon maken voor mijn mondeling. Als ik nog meer tijd had was ik de rest van de detail pagina's gaan maken. Hierbij had ik een stuk meer geoefend met animeren. 
