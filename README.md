@@ -79,11 +79,11 @@ Nu hadden we een infinite scroll maar ik wou het een stuk interesanter maken dan
      transform: translateY(var(--scroll-distance));
    }
  }
-</style>
+</code>
 
 Deze code zorgt ervoor dat de even nummers langzaam naar beneden gaan en de odd li's snel naar beneden gaan met een on scroll animation. Hier had ik nog een animatie toe gevoegd voor de plaatjes zelf. Dit ging op de animation timeline view(). Deze annimatie zorgt ervoor dat het plaatje als die in view komt van een 0.1 scale naar zijn normale grote gaat.  
 
-<style>
+<code>
       img {
          width: 100%;
          height: auto;
@@ -306,7 +306,7 @@ gsap.to(ghost, {
       motionPath: {
         path: [
           { x: 0, y: 0 }, // Start
-          { x: window.innerWidth * 0.9, y: 0 }, // Go right
+          { x: window.innerWidth * 0.9, y: 0 }, // Go 
           { x: window.innerWidth * 0.3, y: window.innerHeight * 0.7 }, // Curve down and left
           { x: window.innerWidth * 0, y: window.innerHeight * 0.5 }, // Go left
           { x: window.innerWidth * 0.3, y: window.innerHeight * 0.3 }, // Go right and up
