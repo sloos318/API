@@ -1,9 +1,28 @@
 # readme voor API
-Dit is een schoolproject waar ik mee bezig ga zijn tijdens de minor design and developement in 2025. Het doel voor mij bij dit vak is om gebruik te maken van animatie libraries en kijken hoe die werken en wat ik er mee zou kunnen. Hierom zal ik bijde lenis en gsap gaan gebruiken. Ik zal om het idee simpel te houden een overview van films te maken met een beetje informatie er over en een trailer op een detail pagina. Voor de rest wil ik focussen op de animaties.
+Dit project maak ik in het kader van de minor Design and Development in 2025. Mijn doel is om ervaring op te doen met animatielibraries en te onderzoeken hoe ze werken en wat ik ermee kan bereiken in webontwikkeling. Daarom ga ik aan de slag met zowel Lenis als GSAP.
+
+Om het concept overzichtelijk te houden, bouw ik een overzichtspagina met films, waarin per film beknopte informatie wordt weergegeven. Op de detailpagina voeg ik een trailer toe. De nadruk ligt in dit project op het toepassen en verfijnen van animaties.
 
 
 ## installatie
-Als je dit project wilt instaleren zal je npm i moeten gebruiken om alle packages te downloaden en kan je de website starten met npm run dev. Om alles werkend te maken heb je wel een api key nodig die je in zal moeten invullen in een .env file. Deze zul je aan moeten vragen bij tmdb (https://www.themoviedb.org/). 
+  <p>
+    Om dit project lokaal te installeren, volg je de onderstaande stappen:
+  </p>
+  <ol>
+    <li>Voer <code>npm install</code> uit om alle benodigde packages te downloaden.</li>
+    <li>Start de ontwikkelserver met <code>npm run dev</code>.</li>
+    <li>
+      Zorg ervoor dat je een <strong>.env</strong>-bestand aanmaakt in de hoofdmap van het project.
+      Voeg hierin je persoonlijke API-sleutel toe, zoals in het volgende voorbeeld:
+      <pre><code>VITE_TMDB_API_KEY=your_api_key_here</code></pre>
+    </li>
+    <li>
+      Je kunt een API-sleutel aanvragen via 
+      <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">
+        The Movie Database (TMDB)
+      </a>.
+    </li>
+  </ol>
 
 
 ## week 1
@@ -11,33 +30,54 @@ Deze week heb ik weinig gedaan aangezien ik ziek was dus neem dit samen met week
 
 
 ## week 2
-Sinds ik in de eerste week ziek was moest ik snel een plan maken. Hierom koos ik voor iets simpels dat al als een optie werd aangegeven op dlo. Ik koos er voor om te gaan werken met de tmdb dataset en in de stijl te gaan werken die ik erg goed kende, namelijk netflix.  Ik ging in week 2 direct aan de slag met het aanmaken van een werkveld waarin ik kon coderen. Dit ging gelukkig vrij klakkeloos aangezien ik project tech had gedaan en vrij goed kon herinneren hoe dit moest. Na al het opzetten maakte ik een main route aan en ging ik aan de slag met wat onderzoek doen naar mijn dataset. In de dataset zat erg veel maar wat Ik zoiezo wou was graag plaatjes en de naam van de film ophalen en in de index sturen.
+Na een moeilijke eerste week, waarin ik ziek was, moest ik snel een plan opstellen voor mijn project. Omdat er al een paar opties op de DLO werden aangegeven, besloot ik iets eenvoudigs te kiezen, wat me meteen vertrouwd leek. Ik koos ervoor om met de TMDB-dataset te werken en de stijl van Netflix toe te passen, een ontwerp waar ik al goed mee bekend ben.
 
-Dit deed ik door de links op te halen en een constant genaamd options te schrijven waarin ik een get function in zet en mijn api key zodat ik dat niet aleemaal op te schrijven als ik iets uit de api haal.
+In week 2 ben ik meteen begonnen met het opzetten van een werkveld waar ik zou kunnen coderen. Dit proces ging gelukkig vrij soepel, aangezien ik al ervaring had met Project Tech en het meeste nog goed herinnerde. Nadat alles goed was opgezet, maakte ik de basisroute voor het project en begon ik met het onderzoeken van de TMDB-dataset. De dataset bevatte veel gegevens, maar ik richtte me in eerste instantie op het ophalen van filmomslagen en de namen van films om deze weer te geven op de homepage.
 
-<img src='/reasdmeimages/customProperties.png'>
+Om dit te realiseren, haalde ik de links van de films op via een constante genaamd options. In deze constante plaatste ik een GET-functie met mijn API-sleutel, zodat ik niet telkens de sleutel hoefde in te voeren wanneer ik gegevens opvroeg uit de API.
 
-Hiermee haalde ik een aantal films op en renderde ik die op de home page. 
+<img src='/reasdmeimages/image11.png'>
 
+### routes
+Ik moest natuurlijk alles mee geven in mijn main route. De eerste stap was het opzetten van de routes. Ik begon met een eenvoudige GET-route voor de homepage. De homepage zou de lijst van films tonen, en de detailpagina zou meer gedetailleerde informatie over een geselecteerde film bevatten. Voor nu zou ik de id en de poster mee geven aan de film (later zou ik ook genres toe voegen). Dit deed ik door de link met de options functies in te laden en de juiste info er uit te halen en te renderen op de pagina.
+
+<img src='/reasdmeimages/image12.png'>
+<img src='/reasdmeimages/image13.png'>
 <img src='/reasdmeimages/image1.png'>
 <img src='/reasdmeimages/image2.png'>
 
-Hierna ging ik voor het eerste met liquid aan de gang, het duurde even voordat ik wist hoe de syntax in elkaar zat maar uiteindelijk bleek dat vrij simpel te zijn. 
+
+### Werken met Liquid
+Toen de basisroutes stonden, ging ik voor het eerst aan de slag met Liquid, de templating engine die ik gebruikte om de gegevens dynamisch weer te geven. De eerste stap was het begrijpen van de juiste syntaxis voor het weergeven van variabelen en loops in Liquid. Dit kostte wat tijd, maar uiteindelijk ontdekte ik dat het vrij eenvoudig te gebruiken was. In Liquid gebruikte ik de for-loop om door de films heen te itereren en de naam en afbeelding van elke film weer te geven.
 
 <img src='/reasdmeimages/image3.png'>
 
-Nou tot nu ging het vrij goed maar ik was nog niet begonnen met een detail pagina maken. Dit bleek vrij moeilijk te zijn voor mij en het duurde even om uit te vogellen hoe ik de ID mee moest geven en die moest gebruiken om een nieuwe route aan te maken met dat id. maar uiteindelijk moest ik gewoon niet zo moeilijk nadenken en hetzelfde doen als ik met het plaatje, en de naam had gedaan en gewoon het er in sturen en achter de link plakken. Hierna was het een kwestie van de route aanmaken en wat dingen inladen door elke keer via de id alles op zoeken. Nu had ik aan het eind van week twee een index en detail pagina met hele simpele styling die gebaseerd was op netflix.
 
-In mijn gesprek met syd bespraken wat ik nog meer van plan was. Ze vond het namelijk nog erg simpel en weinig nieuws. Hierom bedacht ik om genre specifieke pagina's te maken en gebruik te maken van lenis en gsap (aangeraden door syd). Hierbij kon ik gebruik maken van lenis om de home pagina op te fleuren met een infinite scroll door lenis en de detail pagina's opmaken met verschillende geanimeerde svg's.
+### De Detailpagina
+De detailpagina's waren de volgende stap, en dit was een stuk ingewikkelder. De uitdaging was om de juiste ID van een film door te geven vanuit de homepage naar de detailpagina, zodat ik de juiste gegevens voor die specifieke film kon ophalen. Eerst had ik wat moeite om dit goed op te zetten, maar ik ontdekte uiteindelijk dat ik eenvoudig de film-ID in de URL moest opnemen en deze met behulp van de req.params in de backend moest ophalen.
+
+<code>
+app.get("/movie/:id", async (req, res) => {
+  const movieId = req.params.id; // Haal de film-ID op uit de URL
+  // Haal de gegevens voor de film op en render de detailpagina
+});
+</code>
+
+### resultaten
+Aan het einde van week 2 had ik een werkende homepage met films die werden opgehaald uit de TMDB API en weergegeven op de pagina. Ook had ik de detailpagina werkend, waar de gebruiker de specifieke informatie van een film kon zien door simpelweg op de film te klikken. De basisroutes voor de homepage en detailpagina waren dus goed opgezet, maar de genre-specifieke pagina's had ik nog niet gerealiseerd. Dit was iets wat ik in week 3 zou gaan doen.
+
+In mijn gesprek met Syd werd duidelijk dat mijn project nog te simpel was en dat er weinig nieuws te ontdekken viel. Op basis van dit feedback besloot ik om de website verder uit te breiden door genre-specifieke pagina's toe te voegen en gebruik te maken van de animatielibraries Lenis en GSAP, die door Syd werden aanbevolen.
+
+Door Lenis te gebruiken, wilde ik de homepage verbeteren met een oneindige scrollfunctie, en voor de detailpagina’s wilde ik geanimeerde SVG’s gebruiken om de visuele ervaring te verbeteren.
 
 
 ## week 3
-De derde week zat vol met verschillende lastige opgaves die ik voor mezelf had geleverd. Ik wou in de derde week infinite scroll systeem maken met scroll animatie, een view animation en een kleine hover animatie om aan te geven welk genre de film is.
+De derde week zat vol met verschillende uitdagende taken die ik voor mezelf had gesteld. Mijn doelen waren het implementeren van een infinite scroll systeem met animaties, een view animatie en een kleine hoveranimatie om genres aan te geven.
 
 ### infinite scroll
-In week 3 ben ik eerst aan de slag gegaan met het maken van een infinite scroll met lenis. Ik had een codepen van syd gekregen waarop ik het kon baseren. aan het einde had ik een infinite scroll die steeds meer plaatjes inlade als je dichtbij het einde van de pagina kwam. Dit werkte behoorlijk goed maar aan het einde van de week kwam ik er achter dat het nog al wat flaws had. Toen ik het namelijk aan declan liet zien zagen we bijde dat het nog al buggy was en steeds langzamer werkte. Dit was natuurlijk niet wat je wilde maar het was lastig om iets beters te bedenken. Uiteindelijk heb ik het behoorlijk versimpelt en het meer laten lijken op wat syd me de eerste keer liet zien. Wat er gebeurt in deze code is dat zodra je dicht bij het einde kwam dat hij je helemaal naar boven teleporteert. 
+In week 3 ben ik begonnen met het maken van een infinite scroll, waarbij ik gebruik maakte van Lenis. Ik had een CodePen van Syd ontvangen die ik als basis kon gebruiken. Aan het einde van de week had ik een werkend systeem waarbij nieuwe plaatjes werden ingeladen zodra je dichtbij het einde van de pagina kwam. Het werkte goed, maar toen ik het aan Declan liet zien, kwamen we erachter dat er nog enkele bugs waren en dat het steeds trager werd naarmate je verder scrolde. Dit was niet ideaal, dus besloot ik het systeem te vereenvoudigen en het meer te laten lijken op de originele versie die Syd me had laten zien. Uiteindelijk zorgde ik ervoor dat de pagina je naar boven teleportte zodra je het einde bereikte.
 
-Deze code ziet er zo uit:
+De code voor de infinite scroll zag er als volgt uit:
 
 <code>
   // ✅ Init Lenis with true infinite scroll
@@ -52,7 +92,9 @@ Deze code ziet er zo uit:
 
 
 ### animatie van de scroll
-Nu hadden we een infinite scroll maar ik wou het een stuk interesanter maken dan een aantal plaatjes waar je door heen kan scrollen. Eerst wou ik elke andere rij wat sneller laten bewegen dan de andere. Dit deed ik gewoon met css natuurlijk en kwam er makkelijk uit met dit stukje code:
+Met de infinite scroll in plaats, wilde ik de ervaring interessanter maken door animaties toe te voegen aan de scrollbewegingen. Ik besloot elke andere rij sneller te laten bewegen dan de andere, wat ik eenvoudig met CSS kon doen. 
+
+Hier is de code die ik gebruikte:
 
 <code>
     li:nth-child(odd) {
@@ -81,7 +123,7 @@ Nu hadden we een infinite scroll maar ik wou het een stuk interesanter maken dan
  }
 </code>
 
-Deze code zorgt ervoor dat de even nummers langzaam naar beneden gaan en de odd li's snel naar beneden gaan met een on scroll animation. Hier had ik nog een animatie toe gevoegd voor de plaatjes zelf. Dit ging op de animation timeline view(). Deze annimatie zorgt ervoor dat het plaatje als die in view komt van een 0.1 scale naar zijn normale grote gaat.  
+Deze CSS zorgt ervoor dat de even genummerde items langzamer bewegen en de oneven items sneller bewegen, afhankelijk van hun --scroll-distance. Daarnaast heb ik een animatie toegevoegd voor de afbeeldingen zelf. Deze animatie zorgt ervoor dat de afbeeldingen schalen van 0.1 naar hun normale grootte zodra ze in beeld komen. De code voor deze animatie was:
 
 <code>
       img {
@@ -106,22 +148,24 @@ Deze code zorgt ervoor dat de even nummers langzaam naar beneden gaan en de odd 
       }
 </code>
 
-De combinatie van de 2 scroll animaties zorgt voor een leuke en interesante animatie die de home pagina heel wat op fleurt.
+Deze combinatie van scrollanimaties zorgt voor een dynamische en visueel interessante homepagina.
 
 
 ### de cards leuker maken
+Hoewel de homepagina er nu beter uitzag met de animaties, vond ik dat de cards nog wat verbeterd konden worden. Ik verwijderde de filmnamen en zorgde ervoor dat alleen de afbeeldingen zichtbaar waren. Vervolgens haalde ik de genres op uit de database en stuurde deze door naar de hoofdpagina, zowel als naam als als nummer. 
 
-Nu vond ik dat de home pagina een heel stuk beter was geworden met de annimaties erbij maar vond ik dat de cards nog wel wat op konden fleuren. Ik verwijderde de namen van de films en zorgde dat alleen de plaatjes nog over gaven. Hierna haalde ik de genres op uit de database en stuurde ik die 2 keer door naar de main pagina. een keer als naam en een keer als een nummer. 
+Dit deed ik met behulp van de volgende code:
 
-Dit ging met deze code: 
 <img src='/reasdmeimages/image4.png'>
 
-Dit deed ik om het genre in de html op 2 manieren te gebruiken. Als een class:
+Ik gebruikte de genres in de HTML op twee manieren: als een class:
 <img src='/reasdmeimages/image5.png'>
-en een keer voor een sibling-index
+En als een sibling-index:
 <img src='/reasdmeimages/image6.png'>
 
-Dit gebruikte ik om genre specifieke kleuren en iconen toe te voegen. Ik had namelijk in illistrator deze iconen gemaakt en die ging ik gebruiken in de before en after om een hover animatie te maken  voor de cards. De index nummers zou ik gebruiken om een achtergronkleur per genre te maken door die in te vullen bij de oklch. Zo is het uiteindelijk geworden:
+Dit stelde me in staat om genre-specifieke kleuren en iconen toe te voegen. Ik had namelijk in Illustrator iconen gemaakt die ik gebruikte in de ::before en ::after pseudo-elementen om een hoveranimatie voor de cards te creëren. De indexnummers gebruik ik om een achtergrondkleur per genre toe te voegen via de oklch kleurfunctie. 
+
+Het eindresultaat zag er zo uit:
 <img src='/reasdmeimages/image7.png'>
 <img src='/reasdmeimages/image8.png'>
 <img src='/reasdmeimages/image9.png'>
@@ -129,9 +173,9 @@ Dit gebruikte ik om genre specifieke kleuren en iconen toe te voegen. Ik had nam
 
 
 ### view transistion
-Nu ik blij was met mijn main pagina wou ik een leuke transitie animatie maken van de index naar de detail pagina. Dit ging ik doen met gsap. wat ik deed met gsap was de positie van het plaatje waar op ik klikte pakken en een kopie van dat plaatje van daar naar het midden van de pagina brengen. Ik had op de detail pagina het plaatje van de poster in het midden en precies 30 vw van de bovenkant gezet. Dus liet ik het gekopieerde plaatje ook naar die positie brengen. Hierdoor kreeg je een mooie overgang zonder dat je door had dat je van pagina switchte. 
+Nu ik tevreden was met de homepagina, wilde ik een transitieanimatie maken van de indexpagina naar de detailpagina. Hiervoor gebruikte ik GSAP. Wat ik deed, was het vastleggen van de positie van het plaatje waarop je klikte, en een kopie van dat plaatje naar het midden van de pagina bewegen. Op de detailpagina stond het plaatje in het midden, met een offset van 30vw van de bovenkant. De animatie zorgde ervoor dat het gekopieerde plaatje naar deze positie bewoog, wat resulteerde in een naadloze overgang tussen de twee pagina's zonder dat de gebruiker zich bewust was van de paginawisseling.
 
-Dit is hoe de code er daarvoor uit ziet: 
+De GSAP code voor deze animatie zag er als volgt uit:
 
 <code>
 // ================================================
@@ -287,16 +331,15 @@ document.addEventListener('click', (e) => {
 
 </code>
 
-Nu had ik alweer een stuk meer dan in week 2 maar ik was nog niet tevreden met hoe de detail pagina's in elkaar zaten. Dit zou ik in week 4 afmaken.
+Met deze toevoeging voelde de overgang tussen de pagina’s veel soepeler aan. Aan het einde van de week had ik veel vooruitgang geboekt, maar was ik nog niet tevreden met de detailpagina’s. Dit zou ik in week 4 afmaken. 
 
 
 ## week 4
-
-In week 4 begon ik met het verbeteren van mijn detail pagina. Hiervoor begon ik alleen niet met coderen maar weer in illistrator. Hier had ik een leuke achtergrond gemaakt voor films in het horror genre. Dit koste me alleen wel 3 uur om voor elkaar te krijgen en moest ik me bedenken dat ik niet alle detail pagina's af had kunnen krijgen. dus hield ik het bij de horror pagina. Dit is de achtergrond geworden:
+In week 4 begon ik met het verbeteren van mijn detailpagina's, maar deze keer besloot ik niet meteen te starten met coderen. Ik koos ervoor om eerst te werken in Illustrator, waar ik een achtergrond ontwerpe voor de films in het horror genre. Dit ontwerp kostte me wel drie uur om af te krijgen, maar het gaf me meteen een leuk startpunt voor de rest van de detailpagina's. Ik realiseerde me echter al snel dat ik niet alle detailpagina's zou kunnen afronden in de tijd die ik had. Daarom besloot ik me te concentreren op de horrorpagina, die goed af kwam en waar ik veel energie in had gestoken. Dit is de achtergrond die ik heb gemaakt:
 
 <img src='./reasdmeimages/image10.png'>
 
-Nu had ik een achtergrond maar ik wou nog een leuke animatie maken met het spookje dat ik voor horror had gemaakt. Dit zou ik nogmaals met gsap gaan doen. Het idee was om het spookje te laten verschijnen uit het graf in het plaatje en dan een stukje rond vliegen om als laatste naast de poster terecht te komen. Dit idee voerde ik uit met de motion paths uit gsap. Hier kon ik coordienaten geven die het spookje zou volgen en met een bepaalde curve daar naar toe zou vliegen. Dit is hoe de code er uit ziet:
+Met de achtergrond voor de horrorfilm-pagina was ik al een heel eind, maar ik wilde er nog iets extra's aan toevoegen: een animatie voor het spookje dat ik had ontworpen. Deze animatie zou de sfeer van de pagina verder versterken. Ik koos er weer voor om deze animatie te maken met GSAP, aangezien de vorige animaties zo goed waren bevallen. Het idee was om het spookje uit het graf op de achtergrond te laten verschijnen en een stuk rond te laten vliegen om uiteindelijk naast de filmposter terecht te komen. Hiervoor gebruikte ik de motion paths van GSAP, waarmee ik coördinaten kon opgeven die het spookje zou volgen. Door een bepaalde curve toe te voegen, zou het spookje op een natuurlijke manier bewegen. De code voor deze animatie ziet er als volgt uit:
 
 <code>
 gsap.to(ghost, {
@@ -318,4 +361,8 @@ gsap.to(ghost, {
       }})
 </code>
 
-Nu was alles af wat ik af kon maken voor mijn mondeling. Als ik nog meer tijd had was ik de rest van de detail pagina's gaan maken. Hierbij had ik een stuk meer geoefend met animeren. jippie!
+Met deze animatie was de horrorpagina helemaal af, en ik was tevreden met het resultaat. Dit was het enige dat ik af kon krijgen voor mijn mondeling, aangezien ik beperkte tijd had. Als ik nog meer tijd had gehad, had ik zeker de rest van de detailpagina's willen maken, maar ik was al trots op wat ik had bereikt. Ik had in ieder geval veel ervaring opgedaan met animaties, en dat was een belangrijke stap voorwaarts in dit project.
+
+Het was geweldig om te zien hoe de verschillende technieken die ik had toegepast—van infinite scroll tot motion path animaties—samenkwamen om een levendige en interactieve gebruikerservaring te creëren. Het voelde goed om mijn vooruitgang te zien en mijn vaardigheden in zowel coderen als animatie te verbeteren.
+
+In de toekomst zou ik nog graag wat meer diepgang aan de detailpagina's willen toevoegen, maar voor nu ben ik tevreden met wat ik heb bereikt. Het leren werken met animaties en het verbeteren van de algehele gebruikersinterface zijn waardevolle stappen geweest in dit project.
